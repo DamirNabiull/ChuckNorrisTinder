@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class TinderCard extends StatelessWidget {
   final FadeInImage image;
-  final Chuck chuck;
+  final Future<Chuck> chuck;
 
   const TinderCard({
     super.key,
@@ -14,7 +14,30 @@ class TinderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: image,
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width - 50,
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: 300,
+                child: image,
+              ),
+              const Spacer(),
+              FutureBuilder<Chuck>(
+                  future: chuck,
+                  builder: (context, snapshot) {
+                    return snapshot.hasData
+                        ? Text(snapshot.data!.jokeValue)
+                        : const CircularProgressIndicator();
+                  }
+              ),
+              const Spacer()
+            ],
+          ),
+        )
+      )
     );
   }
 }

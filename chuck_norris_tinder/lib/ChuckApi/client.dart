@@ -8,14 +8,14 @@ class ApiClient{
 
   ApiClient(this.apiUrl);
 
-  Future<Chuck?> getData() async {
-    Chuck? chuck;
+  Future<Chuck> getData() async {
+    Chuck chuck;
     try {
       var response = await client.get(apiUrl);
       chuck = Chuck.fromJson(jsonDecode(response.body));
     }
     catch (e) {
-      chuck = null;
+      chuck = Chuck("get Api error", "get Api error");
     }
 
     return chuck;
