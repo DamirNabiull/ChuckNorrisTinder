@@ -14,8 +14,6 @@ class ImageConstructor {
     var index = _random.nextInt(_urls.length);
 
     return FadeInImage.assetNetwork(
-        placeholder: _placeholder,
-        image: _urls[index]
-    );
+        placeholder: _placeholder, image: _urls[index]);
   }
 }

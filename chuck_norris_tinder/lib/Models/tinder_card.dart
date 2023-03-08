@@ -5,39 +5,32 @@ class TinderCard extends StatelessWidget {
   final FadeInImage image;
   final Future<Chuck> chuck;
 
-  const TinderCard({
-    super.key,
-    required this.chuck,
-    required this.image
-  });
+  const TinderCard({super.key, required this.chuck, required this.image});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width - 50,
-          child: Column(
-            children: <Widget>[
-              SizedBox(
-                height: 300,
-                child: image,
+        child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width - 50,
+              child: Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 300,
+                    child: image,
+                  ),
+                  const Spacer(),
+                  FutureBuilder<Chuck>(
+                      future: chuck,
+                      builder: (context, snapshot) {
+                        return snapshot.hasData
+                            ? Text(snapshot.data!.jokeValue)
+                            : const CircularProgressIndicator();
+                      }),
+                  const Spacer()
+                ],
               ),
-              const Spacer(),
-              FutureBuilder<Chuck>(
-                  future: chuck,
-                  builder: (context, snapshot) {
-                    return snapshot.hasData
-                        ? Text(snapshot.data!.jokeValue)
-                        : const CircularProgressIndicator();
-                  }
-              ),
-              const Spacer()
-            ],
-          ),
-        )
-      )
-    );
+            )));
   }
 }
