@@ -18,7 +18,8 @@ class TinderCard extends StatelessWidget {
                 children: <Widget>[
                   SizedBox(
                     height: 300,
-                    child: image,
+                    width: MediaQuery.of(context).size.width - 50,
+                    child: FittedBox(fit: BoxFit.fill, child: image),
                   ),
                   const Spacer(),
                   FutureBuilder<Chuck>(

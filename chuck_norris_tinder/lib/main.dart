@@ -4,7 +4,6 @@ import 'package:chuck_norris_tinder/Models/constants.dart';
 import 'package:chuck_norris_tinder/Models/tinder_card.dart';
 import 'package:flutter/material.dart';
 import 'package:swipe_cards/swipe_cards.dart';
-
 import 'ChuckApi/Models/chuck.dart';
 
 ApiClient apiClient = ApiClient(Uri.https(apiHost, apiRoute));
@@ -99,6 +98,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     icon: const Icon(
                       Icons.disabled_by_default,
                       color: Colors.black,
+                      size: 35,
+                      semanticLabel: 'Like',
+                    ),
+                    color: Colors.white,
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      apiClient.openBrowser();
+                    },
+                    icon: const Icon(
+                      Icons.language,
+                      color: Colors.blue,
                       size: 35,
                       semanticLabel: 'Like',
                     ),
