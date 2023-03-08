@@ -1,8 +1,11 @@
+import 'package:chuck_norris_tinder/ChuckApi/Models/chuck.dart';
 import 'package:chuck_norris_tinder/ChuckApi/client.dart';
+import 'package:chuck_norris_tinder/ImageConstructor/image_constructor.dart';
+import 'package:chuck_norris_tinder/Models/tinder_card.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  var apiClient = ApiClient(Uri.https('api.chucknorris.io', 'jokes/random'));
+  // var apiClient = ApiClient(Uri.https('api.chucknorris.io', 'jokes/random'));
 
   runApp(const MyApp());
 }
@@ -32,11 +35,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final _imageConstructor = ImageConstructor();
+  final _chuck = Chuck('jokeUrl', 'jokeId', 'jokeValue');
+  late FadeInImage _image;
+  late TinderCard _card;
   int _counter = 0;
+
+  _MyHomePageState(){
+    _image = _imageConstructor.getFadeInImage();
+    _card = TinderCard(chuck: _chuck, image: _image);
+  }
 
   void _incrementCounter() {
     setState(() {
       _counter++;
+      _image = _imageConstructor.getFadeInImage();
+      _card = TinderCard(chuck: _chuck, image: _image);
     });
   }
 
@@ -50,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            _card,
             const Text(
               'You have pushed the button this many times:',
             ),
