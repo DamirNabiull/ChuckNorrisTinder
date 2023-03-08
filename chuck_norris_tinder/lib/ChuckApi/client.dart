@@ -12,13 +12,10 @@ class ApiClient{
     Chuck? chuck;
     try {
       var response = await client.get(apiUrl);
-      print(response.body);
       chuck = Chuck.fromJson(jsonDecode(response.body));
-      print(chuck.jokeUrl);
-      print(chuck.jokeValue);
     }
     catch (e) {
-      print("Error occurred $e");
+      chuck = null;
     }
 
     return chuck;

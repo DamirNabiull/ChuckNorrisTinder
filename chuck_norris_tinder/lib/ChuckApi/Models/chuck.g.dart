@@ -8,10 +8,12 @@ part of 'chuck.dart';
 
 Chuck _$ChuckFromJson(Map<String, dynamic> json) => Chuck(
       json['url'] as String,
+      json['id'] as String,
       json['value'] as String,
     );
 
 Map<String, dynamic> _$ChuckToJson(Chuck instance) => <String, dynamic>{
       'url': instance.jokeUrl,
+      'id': instance.jokeId,
       'value': instance.jokeValue,
     };
