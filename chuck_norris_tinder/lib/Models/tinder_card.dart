@@ -29,17 +29,11 @@ class TinderCard extends StatelessWidget {
                             ? SizedBox(
                                 width: MediaQuery.of(context).size.width - 50,
                                 height: MediaQuery.of(context).size.height / 3,
-                                child: Column(
-                                  children: [
-                                    const Spacer(),
-                                    Text(
-                                      snapshot.data!.jokeValue,
-                                      textAlign: TextAlign.center,
-                                      overflow: TextOverflow.fade,
-                                      style: const TextStyle(fontSize: 20),
-                                    ),
-                                    const Spacer()
-                                  ],
+                                child: Text(
+                                  snapshot.data!.jokeValue,
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.fade,
+                                  style: const TextStyle(fontSize: 20),
                                 ),
                               )
                             : const CircularProgressIndicator();
