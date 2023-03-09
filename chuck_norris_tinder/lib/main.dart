@@ -128,7 +128,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Colors.white,
                   ),
                 ],
-              )
+              ),
+              const Spacer()
             ],
           )),
         ) // This trailing comma makes auto-formatting nicer for build methods.

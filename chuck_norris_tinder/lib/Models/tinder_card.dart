@@ -17,7 +17,7 @@ class TinderCard extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   SizedBox(
-                    height: 300,
+                    height: MediaQuery.of(context).size.height - 550,
                     width: MediaQuery.of(context).size.width - 50,
                     child: FittedBox(fit: BoxFit.fill, child: image),
                   ),
@@ -26,7 +26,22 @@ class TinderCard extends StatelessWidget {
                       future: chuck,
                       builder: (context, snapshot) {
                         return snapshot.hasData
-                            ? Text(snapshot.data!.jokeValue)
+                            ? SizedBox(
+                                width: MediaQuery.of(context).size.width - 50,
+                                height: MediaQuery.of(context).size.height / 3,
+                                child: Column(
+                                  children: [
+                                    const Spacer(),
+                                    Text(
+                                      snapshot.data!.jokeValue,
+                                      textAlign: TextAlign.center,
+                                      overflow: TextOverflow.fade,
+                                      style: const TextStyle(fontSize: 20),
+                                    ),
+                                    const Spacer()
+                                  ],
+                                ),
+                              )
                             : const CircularProgressIndicator();
                       }),
                   const Spacer()
