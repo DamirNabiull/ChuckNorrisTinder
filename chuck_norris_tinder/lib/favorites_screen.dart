@@ -2,6 +2,7 @@ import 'package:chuck_norris_tinder/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:localization/localization.dart';
 
 class FavoritesScreen extends ConsumerWidget {
   const FavoritesScreen({super.key});
@@ -11,13 +12,13 @@ class FavoritesScreen extends ConsumerWidget {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Favorites"), // add localization
+          title: Text("favorites-title".i18n()), // add localization
         ),
         body: StreamBuilder(
           stream: ref.read(fireStoreProvider).getAllJokes(),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
-              return const Text("Error occurred");
+              return Text("error-occurred".i18n());
             } else if (snapshot.hasData) {
               final jokes = snapshot.data!;
               return SizedBox(

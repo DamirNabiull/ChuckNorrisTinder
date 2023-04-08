@@ -4,6 +4,7 @@ import 'package:chuck_norris_tinder/favorites_screen.dart';
 import 'package:chuck_norris_tinder/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:localization/localization.dart';
 import 'package:swipe_cards/swipe_cards.dart';
 
 class MyHomePage extends ConsumerStatefulWidget {
@@ -53,11 +54,11 @@ class MyHomePageState extends ConsumerState<MyHomePage> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Chuck Tinder"), // add localization
+          title: Text("main-title".i18n()),
           actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.favorite,),
-              tooltip: 'Go to the next page', // add localization
+              tooltip: "go-next-tooltip".i18n(),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute<void>(
                   builder: (BuildContext context) {
@@ -99,7 +100,6 @@ class MyHomePageState extends ConsumerState<MyHomePage> {
                           Icons.disabled_by_default,
                           color: Colors.black,
                           size: 35,
-                          semanticLabel: 'Like', // add localization
                         ),
                         color: Colors.white,
                       ),
@@ -111,20 +111,17 @@ class MyHomePageState extends ConsumerState<MyHomePage> {
                           Icons.language,
                           color: Colors.blue,
                           size: 35,
-                          semanticLabel: 'Like', // add localization
                         ),
                         color: Colors.white,
                       ),
                       IconButton(
                         onPressed: () {
-                          throw Exception("Crashlytics test");
-                          // _matchEngine.currentItem!.like();
+                          _matchEngine.currentItem!.like();
                         },
                         icon: const Icon(
                           Icons.favorite,
                           color: Colors.redAccent,
                           size: 35,
-                          semanticLabel: 'Like', // add localization
                         ),
                         color: Colors.white,
                       ),
@@ -136,5 +133,4 @@ class MyHomePageState extends ConsumerState<MyHomePage> {
         ) // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-
 }
