@@ -57,7 +57,9 @@ class MyHomePageState extends ConsumerState<MyHomePage> {
           title: Text("main-title".i18n()),
           actions: <Widget>[
             IconButton(
-              icon: const Icon(Icons.favorite,),
+              icon: const Icon(
+                Icons.favorite,
+              ),
               tooltip: "go-next-tooltip".i18n(),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute<void>(
@@ -72,65 +74,65 @@ class MyHomePageState extends ConsumerState<MyHomePage> {
         body: SafeArea(
           child: Center(
               child: Column(
+            children: [
+              Center(
+                child: SizedBox(
+                    width: MediaQuery.of(context).size.width - 50,
+                    height: MediaQuery.of(context).size.height - 200,
+                    child: Center(
+                      child: SwipeCards(
+                        matchEngine: _matchEngine,
+                        itemBuilder: (BuildContext context, int index) {
+                          return _swipeItems[index].content;
+                        },
+                        onStackFinished: _addCard,
+                      ),
+                    )),
+              ),
+              const Spacer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Center(
-                    child: SizedBox(
-                        width: MediaQuery.of(context).size.width - 50,
-                        height: MediaQuery.of(context).size.height - 200,
-                        child: Center(
-                          child: SwipeCards(
-                            matchEngine: _matchEngine,
-                            itemBuilder: (BuildContext context, int index) {
-                              return _swipeItems[index].content;
-                            },
-                            onStackFinished: _addCard,
-                          ),
-                        )),
+                  IconButton(
+                    onPressed: () {
+                      _matchEngine.currentItem!.nope();
+                    },
+                    icon: const Icon(
+                      Icons.disabled_by_default,
+                      color: Colors.black,
+                      size: 35,
+                    ),
+                    color: Colors.white,
                   ),
-                  const Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          _matchEngine.currentItem!.nope();
-                        },
-                        icon: const Icon(
-                          Icons.disabled_by_default,
-                          color: Colors.black,
-                          size: 35,
-                        ),
-                        color: Colors.white,
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          ref.read(apiProvider).openBrowser();
-                        },
-                        icon: const Icon(
-                          Icons.language,
-                          color: Colors.blue,
-                          size: 35,
-                        ),
-                        color: Colors.white,
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          _matchEngine.currentItem!.like();
-                        },
-                        icon: const Icon(
-                          Icons.favorite,
-                          color: Colors.redAccent,
-                          size: 35,
-                        ),
-                        color: Colors.white,
-                      ),
-                    ],
+                  IconButton(
+                    onPressed: () {
+                      ref.read(apiProvider).openBrowser();
+                    },
+                    icon: const Icon(
+                      Icons.language,
+                      color: Colors.blue,
+                      size: 35,
+                    ),
+                    color: Colors.white,
                   ),
-                  const Spacer()
+                  IconButton(
+                    onPressed: () {
+                      _matchEngine.currentItem!.like();
+                    },
+                    icon: const Icon(
+                      Icons.favorite,
+                      color: Colors.redAccent,
+                      size: 35,
+                    ),
+                    color: Colors.white,
+                  ),
                 ],
-              )),
+              ),
+              const Spacer()
+            ],
+          )),
         ) // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        );
   }
 }

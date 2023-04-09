@@ -45,7 +45,6 @@ class MyApp extends ConsumerWidget {
         ),
         home: ref.watch(connectionProvider)
             ? const MyHomePage()
-            : const NoConnectionScreen()
-    );
+            : const NoConnectionScreen());
   }
 }

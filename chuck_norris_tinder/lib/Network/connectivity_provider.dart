@@ -11,9 +11,9 @@ class ConnectivityProvider extends Notifier<bool> {
       checkInterval: const Duration(milliseconds: 400),
     );
 
-    final StreamSubscription<InternetConnectionStatus> listener =
-    internetProvider.onStatusChange.listen(
-          (InternetConnectionStatus status) {
+    final StreamSubscription<InternetConnectionStatus> _ =
+        internetProvider.onStatusChange.listen(
+      (InternetConnectionStatus status) {
         switch (status) {
           case InternetConnectionStatus.connected:
             state = true;
